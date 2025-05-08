@@ -19,3 +19,12 @@ All coding and design solutions as package
     twine upload --repository testpypi dist/*
 
 # Publish Prod
+    TBD
+
+
+# Consumption
+    import shaksz
+
+    result = shaksz.leetcode.twoSum([2, 7, 11, 15], 9)
+
+    print(result)
