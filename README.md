@@ -10,9 +10,7 @@ All coding and design solutions as package
 
     python setup.py sdist bdist_wheel
 
-    pip install twine
 
-    twine upload dist/*
 
 # Publish Test
 
@@ -20,6 +18,10 @@ All coding and design solutions as package
 
 # Publish Prod
     TBD
+
+    pip install twine
+
+    twine upload dist/*
 
 
 # Consumption
