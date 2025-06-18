@@ -1,7 +1,7 @@
 # shaksz
 All coding and design solutions as package
 
-
+[![build-release-package](https://github.com/vermavarun/shaksz/actions/workflows/build.yaml/badge.svg)](https://github.com/vermavarun/shaksz/actions/workflows/build.yaml)
 # Unit Tests
 `python -m unittest discover -s tests`
 
