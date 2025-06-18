@@ -25,6 +25,13 @@ All coding and design solutions as package
 
 
 # Consumption
+    pip install git+ssh://git@github.com/vermavarun/shaksz
+    pip install git+https://github.com/vermavarun/shaksz.git
+    pip install git+https://<TOKEN>@github.com/vermavarun/shaksz.git
+    pip install shaksz
+
+    # CODE
+    
     import shaksz
 
     result = shaksz.leetcode.twoSum([2, 7, 11, 15], 9)
