@@ -8,6 +8,11 @@ on:
         required: true
         default: '0.1.0'
 
+
+permissions:
+  contents: write
+
+
 jobs:
   build_package-test:
     runs-on: ubuntu-latest
