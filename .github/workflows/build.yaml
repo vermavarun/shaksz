@@ -1,0 +1,147 @@
+name: build-release-package
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version of the package to build'
+        required: true
+        default: '0.1.0'
+
+jobs:
+  build_package-test:
+    runs-on: ubuntu-latest
+    environment: test
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
+      VERSION: ${{ github.event.inputs.version }}
+      PACKAGE_NAME: 'shaksz'
+      PACKAGE_DESCRIPTION: 'All coding and design solutions as package'
+      PACKAGE_AUTHOR: 'Varun Verma'
+      PACKAGE_AUTHOR_EMAIL: 'vermavarun@outlook.com'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install .[dev]
+
+      - name: Build package
+        run: |
+          python setup.py sdist bdist_wheel
+
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-package
+          path: dist/*
+
+      - name: Create release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          release_name: Release v${{ github.event.inputs.version }}
+          body: |
+            ## Release Notes
+            - Initial release of the package.
+          files: dist/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify completion
+        run: echo "Release v${{ github.event.inputs.version }} has been created successfully."
+        if: success()
+
+      - name: Notify failure
+        run: echo "Release v${{ github.event.inputs.version }} failed to create."
+        if: failure()
+
+      - name: Clean up
+        run: |
+          rm -rf dist
+          rm -rf build
+          rm -rf *.egg-info
+        if: always()
+
+      - name: Finalize
+        run: echo "Build and release process completed."
+        if: always()
+
+  build_package-prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: [build_package-test]
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+      VERSION: ${{ github.event.inputs.version }}
+      PACKAGE_NAME: 'shaksz'
+      PACKAGE_DESCRIPTION: 'All coding and design solutions as package'
+      PACKAGE_AUTHOR: 'Varun Verma'
+      PACKAGE_AUTHOR_EMAIL: 'vermavarun@outlook.com'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install .[dev]
+
+      - name: Build package
+        run: |
+          python setup.py sdist bdist_wheel
+
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-package
+          path: dist/*
+
+      - name: Create release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          release_name: Release v${{ github.event.inputs.version }}
+          body: |
+            ## Release Notes
+            - Initial release of the package.
+          files: dist/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify completion
+        run: echo "Release v${{ github.event.inputs.version }} has been created successfully."
+        if: success()
+
+      - name: Notify failure
+        run: echo "Release v${{ github.event.inputs.version }} failed to create."
+        if: failure()
+
+      - name: Clean up
+        run: |
+          rm -rf dist
+          rm -rf build
+          rm -rf *.egg-info
+        if: always()
+
+      - name: Finalize
+        run: echo "Build and release process completed."
+        if: always()
