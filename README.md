@@ -2,38 +2,36 @@
 All coding and design solutions as package
 
 [![build-release-package](https://github.com/vermavarun/shaksz/actions/workflows/build.yaml/badge.svg)](https://github.com/vermavarun/shaksz/actions/workflows/build.yaml)
-# Unit Tests
-`python -m unittest discover -s tests`
 
-# Build package
+# How to install 
 
+__PIP:__  
 
-    python setup.py sdist bdist_wheel
+```code 
+pip install shaksz
+```
 
+__GitHub(ssh)__: 
+```code
+pip install git+ssh://git@github.com/vermavarun/shaksz
+```
 
+__GitHub(https)__: 
+```code
+pip install git+https://github.com/vermavarun/shaksz.git
+```
 
-# Publish Test
-
-    twine upload --repository testpypi dist/*
-
-# Publish Prod
-    TBD
-
-    pip install twine
-
-    twine upload dist/*
+__GitHub(Token)__: 
+```code
+pip install git+https://<TOKEN>@github.com/vermavarun/shaksz.git
+```
 
 
 # Consumption
-    pip install git+ssh://git@github.com/vermavarun/shaksz
-    pip install git+https://github.com/vermavarun/shaksz.git
-    pip install git+https://<TOKEN>@github.com/vermavarun/shaksz.git
-    pip install shaksz
-
-    # CODE
-    
+```python
     import shaksz
 
     result = shaksz.leetcode.twoSum([2, 7, 11, 15], 9)
 
     print(result)
+```
