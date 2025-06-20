@@ -1,15 +1,11 @@
-# tests/test_module.py
-
-import unittest
 from shaksz import leetcode
+import pytest
 
-class TestModule(unittest.TestCase):
-    def test_twoSum(self):
-        result = leetcode.twoSum([2,7,11,15],9)
-        self.assertEqual(result, [0,1])
-    def test_threeConsecutiveOdds(self):
-        result = leetcode.threeConsecutiveOdds([2,6,4,1])
-        self.assertEqual(result, False)
 
-if __name__ == '__main__':
-    unittest.main()
+def test_twoSum():
+    result = leetcode.twoSum([2, 7, 11, 15], 9)
+    assert result == [0, 1]
+
+def test_threeConsecutiveOdds():
+    result = leetcode.threeConsecutiveOdds([2, 6, 4, 1])
+    assert result is False
