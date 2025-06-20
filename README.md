@@ -1,33 +1,35 @@
 # shaksz
-All coding and design solutions as package
+
+All coding and design solutions as package.
+
 
 [![build-release-package](https://github.com/vermavarun/shaksz/actions/workflows/build.yaml/badge.svg)](https://github.com/vermavarun/shaksz/actions/workflows/build.yaml)
 
-# How to install 
+# How to install 💫
 
-__PIP:__  
+⭐ __PIP:__ ⭐
 
-```code 
+```code
 pip install shaksz
 ```
 
-__GitHub(ssh)__: 
+__GitHub(ssh)__:
 ```code
 pip install git+ssh://git@github.com/vermavarun/shaksz
 ```
 
-__GitHub(https)__: 
+__GitHub(https)__:
 ```code
 pip install git+https://github.com/vermavarun/shaksz.git
 ```
 
-__GitHub(Token)__: 
+__GitHub(Token)__:
 ```code
 pip install git+https://<TOKEN>@github.com/vermavarun/shaksz.git
 ```
 
 
-# Consumption
+# Consumption ⚙️
 ```python
     import shaksz
 
