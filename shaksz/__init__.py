@@ -1,1 +1,1 @@
-from . import leetcode
+from . import leetcode, codeforces

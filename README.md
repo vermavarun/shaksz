@@ -36,4 +36,8 @@ pip install git+https://<TOKEN>@github.com/vermavarun/shaksz.git
     result = shaksz.leetcode.twoSum([2, 7, 11, 15], 9)
 
     print(result)
+
+    result = shaksz.codeforces._4a(input_data)
+
+    print(result)
 ```
